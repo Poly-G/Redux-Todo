@@ -1,7 +1,7 @@
 import React from 'react';
 
 const initialState = {
-  todo: []
+  todos: []
 };
 
 export default (state = initialState, action) => {
