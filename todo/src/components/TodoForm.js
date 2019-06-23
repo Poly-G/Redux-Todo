@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import { addTodo } from '../actions';
+import Todo from './Todo';
 
 class TodoForm extends Component {
   state = {
@@ -25,9 +29,22 @@ class TodoForm extends Component {
           />
           <button onClick={this.handleSubmit}>Add ToDo</button>
         </form>
+        {this.props.todos.map(todo => (
+          <Todo todo={todo} />
+        ))}
+        {console.log(this.props.todos)}
       </div>
     );
   }
 }
 
-export default TodoForm;
+const mapStateToProps = state => {
+  return {
+    todos: state.todos
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { addTodo }
+)(TodoForm);
